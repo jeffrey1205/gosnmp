@@ -11,12 +11,12 @@ import (
  * This tests use hex dumps from real network traffic produced using net-snmp's snmpget with demo.snmplabs.com as SNMP agent.
  */
 
-func authorativeEngineId(t *testing.T) string {
+func authorativeEngineID(t *testing.T) string {
 	// engine ID of demo.snmplabs.com
-	engineId, err := hex.DecodeString("80004fb805636c6f75644dab22cc")
+	engineID, err := hex.DecodeString("80004fb805636c6f75644dab22cc")
 	require.NoError(t, err, "EngineId decoding failed.")
 
-	return string(engineId)
+	return string(engineID)
 }
 
 func correctKeySHA224(t *testing.T) []byte {
@@ -54,7 +54,7 @@ func TestAuthenticationSHA224(t *testing.T) {
 		localAESSalt:             0,
 		localDESSalt:             0,
 		AuthoritativeEngineBoots: 43,
-		AuthoritativeEngineID:    authorativeEngineId(t),
+		AuthoritativeEngineID:    authorativeEngineID(t),
 		AuthoritativeEngineTime:  2113189,
 		UserName:                 "usr-sha224-none",
 		AuthenticationParameters: "",
@@ -89,7 +89,7 @@ func TestIsAuthenticaSHA224(t *testing.T) {
 		localAESSalt:             0,
 		localDESSalt:             0,
 		AuthoritativeEngineBoots: 43,
-		AuthoritativeEngineID:    authorativeEngineId(t),
+		AuthoritativeEngineID:    authorativeEngineID(t),
 		AuthoritativeEngineTime:  2113189,
 		UserName:                 "usr-sha224-none",
 		AuthenticationParameters: packetSHA224AuthenticationParams(t),
@@ -156,7 +156,7 @@ func TestAuthenticationSHA512(t *testing.T) {
 		localAESSalt:             0,
 		localDESSalt:             0,
 		AuthoritativeEngineBoots: 43,
-		AuthoritativeEngineID:    authorativeEngineId(t),
+		AuthoritativeEngineID:    authorativeEngineID(t),
 		AuthoritativeEngineTime:  2113258,
 		UserName:                 "usr-sha512-none",
 		AuthenticationParameters: "",
@@ -191,7 +191,7 @@ func TestIsAuthenticaSHA512(t *testing.T) {
 		localAESSalt:             0,
 		localDESSalt:             0,
 		AuthoritativeEngineBoots: 43,
-		AuthoritativeEngineID:    authorativeEngineId(t),
+		AuthoritativeEngineID:    authorativeEngineID(t),
 		AuthoritativeEngineTime:  2113189,
 		UserName:                 "usr-sha512-none",
 		AuthenticationParameters: packetSHA512AuthenticationParams(t),
