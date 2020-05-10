@@ -249,7 +249,10 @@ func (t *TrapListener) Listen(addr string) error {
 		t.Params = Default
 	}
 
-	t.Params.validateParameters()
+	err := t.Params.validateParameters()
+	if err != nil {
+		return err
+	}
 	/*
 		TODO returning an error causes TestSendTrapBasic() (and others) to hang
 		err := t.Params.validateParameters()
