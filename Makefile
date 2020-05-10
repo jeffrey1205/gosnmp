@@ -7,9 +7,9 @@ test:
 
 lint: lint-examples
 	# start increasing linting level..
-	golangci-lint run --disable-all -E goimports
-	golangci-lint run ./...
-	golangci-lint run -p bugs
+	golangci-lint run --skip-dirs mocks --disable-all -E goimports
+	golangci-lint run --skip-dirs mocks ./...
+	golangci-lint run --skip-dirs mocks -p bugs
 
 
 lint-examples:
