@@ -293,7 +293,7 @@ func (x *GoSNMP) UnmarshalTrap(trap []byte) (result *SnmpPacket) {
 	result = new(SnmpPacket)
 
 	if x.SecurityParameters != nil {
-		x.SecurityParameters.initSecurityKeys()
+		_ = x.SecurityParameters.initSecurityKeys()
 		result.SecurityParameters = x.SecurityParameters.Copy()
 	}
 
