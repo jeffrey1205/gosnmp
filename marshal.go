@@ -403,9 +403,9 @@ func (packet *SnmpPacket) marshalMsg() ([]byte, error) {
 		buf.Write([]byte{4, uint8(len(packet.Community))})
 		buf.WriteString(packet.Community)
 		// pdu
-		pdu, err := packet.marshalPDU()
-		if err != nil {
-			return nil, err
+		pdu, err2 := packet.marshalPDU()
+		if err2 != nil {
+			return nil, err2
 		}
 		buf.Write(pdu)
 	}
@@ -588,24 +588,24 @@ func marshalVarbind(pdu *SnmpPDU) ([]byte, error) {
 	switch pdu.Type {
 
 	case Null:
-		ltmp, err := marshalLength(len(oid))
-		if err != nil {
-			return nil, err
+		ltmp, err2 := marshalLength(len(oid))
+		if err2 != nil {
+			return nil, err2
 		}
 		tmpBuf.Write([]byte{byte(ObjectIdentifier)})
 		tmpBuf.Write(ltmp)
 		tmpBuf.Write(oid)
 		tmpBuf.Write([]byte{byte(Null), byte(EndOfContents)})
 
-		ltmp, err = marshalLength(tmpBuf.Len())
-		if err != nil {
-			return nil, err
+		ltmp, err2 = marshalLength(tmpBuf.Len())
+		if err2 != nil {
+			return nil, err2
 		}
 		pduBuf.Write([]byte{byte(Sequence)})
 		pduBuf.Write(ltmp)
-		_, err = tmpBuf.WriteTo(pduBuf)
-		if err != nil {
-			return nil, err
+		_, err2 = tmpBuf.WriteTo(pduBuf)
+		if err2 != nil {
+			return nil, err2
 		}
 
 	case Integer:

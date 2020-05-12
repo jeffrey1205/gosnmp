@@ -93,10 +93,10 @@ func (x *GoSNMP) decodeValue(data []byte, msg string) (retVal *variable, err err
 		}
 
 		var ret int
-		var err error
-		if ret, err = parseInt(data[cursor:length]); err != nil {
-			x.logPrintf("%v:", err)
-			return retVal, fmt.Errorf("bytes: % x err: %v", data, err)
+		var err2 error
+		if ret, err2 = parseInt(data[cursor:length]); err2 != nil {
+			x.logPrintf("%v:", err2)
+			return retVal, fmt.Errorf("bytes: % x err: %v", data, err2)
 		}
 		retVal.Type = Integer
 		retVal.Value = ret
@@ -118,9 +118,9 @@ func (x *GoSNMP) decodeValue(data []byte, msg string) (retVal *variable, err err
 	case ObjectIdentifier:
 		// 0x06
 		x.logPrint("decodeValue: type is ObjectIdentifier")
-		rawOid, _, err := parseRawField(x.Logger, data, "OID")
-		if err != nil {
-			return nil, fmt.Errorf("Error parsing OID Value: %s", err.Error())
+		rawOid, _, err2 := parseRawField(x.Logger, data, "OID")
+		if err2 != nil {
+			return nil, fmt.Errorf("Error parsing OID Value: %s", err2.Error())
 		}
 		var oid []int
 		var ok bool
@@ -164,9 +164,9 @@ func (x *GoSNMP) decodeValue(data []byte, msg string) (retVal *variable, err err
 			return retVal, fmt.Errorf("not enough data for Counter32 %x (data %d length %d)", data, len(data), length)
 		}
 
-		ret, err := parseUint(data[cursor:length])
-		if err != nil {
-			x.logPrintf("decodeValue: err is %v", err)
+		ret, err2 := parseUint(data[cursor:length])
+		if err2 != nil {
+			x.logPrintf("decodeValue: err is %v", err2)
 			break
 		}
 		retVal.Type = Counter32

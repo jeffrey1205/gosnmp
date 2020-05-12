@@ -759,9 +759,9 @@ func (sp *UsmSecurityParameters) marshal(flags SnmpV3MsgFlags) ([]byte, error) {
 	}
 	// msgPrivacyParameters
 	if flags&AuthPriv > AuthNoPriv {
-		privlen, err := marshalLength(len(sp.PrivacyParameters))
-		if err != nil {
-			return nil, err
+		privlen, err2 := marshalLength(len(sp.PrivacyParameters))
+		if err2 != nil {
+			return nil, err2
 		}
 		buf.Write([]byte{byte(OctetString)})
 		buf.Write(privlen)
