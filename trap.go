@@ -35,13 +35,13 @@ func (x *GoSNMP) SendTrap(trap SnmpTrap) (result *SnmpPacket, err error) {
 	var pdutype PDUType
 
 	if len(trap.Variables) == 0 {
-		return nil, fmt.Errorf("SendTrap requires at least 1 PDU")
+		return nil, fmt.Errorf("function SendTrap requires at least 1 PDU")
 	}
 
 	if trap.Variables[0].Type == TimeTicks {
 		// check is uint32
 		if _, ok := trap.Variables[0].Value.(uint32); !ok {
-			return nil, fmt.Errorf("SendTrap TimeTick must be uint32")
+			return nil, fmt.Errorf("function SendTrap TimeTick must be uint32")
 		}
 	}
 
@@ -59,14 +59,14 @@ func (x *GoSNMP) SendTrap(trap SnmpTrap) (result *SnmpPacket, err error) {
 	case Version1:
 		pdutype = Trap
 		if len(trap.Enterprise) == 0 {
-			return nil, fmt.Errorf("SendTrap for SNMPV1 requires an Enterprise OID")
+			return nil, fmt.Errorf("function SendTrap for SNMPV1 requires an Enterprise OID")
 		}
 		if len(trap.AgentAddress) == 0 {
-			return nil, fmt.Errorf("SendTrap for SNMPV1 requires an Agent Address")
+			return nil, fmt.Errorf("function SendTrap for SNMPV1 requires an Agent Address")
 		}
 
 	default:
-		err = fmt.Errorf("SendTrap doesn't support %s", x.Version)
+		err = fmt.Errorf("function SendTrap doesn't support %s", x.Version)
 		return nil, err
 	}
 
@@ -243,7 +243,7 @@ func (t *TrapListener) listenTCP(addr string) error {
 			conn, err := l.Accept()
 			fmt.Printf("ACCEPT: %s", conn)
 			if err != nil {
-				fmt.Println("Error accepting: ", err.Error())
+				fmt.Println("error accepting: ", err.Error())
 				os.Exit(1)
 			}
 			// Handle connections in a new goroutine.
@@ -284,7 +284,7 @@ func (t *TrapListener) Listen(addr string) error {
 		return t.listenUDP(addr)
 	}
 
-	return fmt.Errorf("Not implemented network protocol: %s [use: tcp/udp]", t.proto)
+	return fmt.Errorf("not implemented network protocol: %s [use: tcp/udp]", t.proto)
 }
 
 // Default trap handler

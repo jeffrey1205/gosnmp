@@ -5,30 +5,7 @@ run:
 linters:
   disable-all: true
   enable:
-  - bodyclose
-  - deadcode
-  - dogsled
-  - errcheck
-  - goconst
-  - gocritic
-  - goimports
   - golint
-  - goprintffuncname
-  - gosimple
-  - govet
-  - ineffassign
-  - interfacer
-  - maligned
-  - misspell
-  - nakedret
-  - staticcheck
-  - structcheck
-  - stylecheck
-  - typecheck
-  - unconvert
-  - unparam
-  - unused
-  - varcheck
 
 linters-settings:
   gofmt:

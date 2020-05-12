@@ -51,7 +51,7 @@ RequestLoop:
 		case GetRequest:
 			response, err = x.Get([]string{oid})
 		default:
-			response, err = nil, fmt.Errorf("Unsupported request type: %d", getRequestType)
+			response, err = nil, fmt.Errorf("unsupported request type: %d", getRequestType)
 		}
 
 		if err != nil {
