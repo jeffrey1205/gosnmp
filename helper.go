@@ -297,7 +297,7 @@ func marshalUvarInt(x uint32) []byte {
 	return buf
 }
 
-func marshalBase128Int(out *bytes.Buffer, n int64) (err error) {
+func marshalBase128Int(out io.ByteWriter, n int64) (err error) {
 	if n == 0 {
 		err = out.WriteByte(0)
 		return
