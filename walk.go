@@ -37,7 +37,6 @@ func (x *GoSNMP) walk(getRequestType PDUType, rootOid string, walkFn WalkFunc) e
 
 RequestLoop:
 	for {
-
 		requests++
 
 		var response *SnmpPacket
@@ -102,7 +101,6 @@ RequestLoop:
 		}
 		// Save last oid for next request
 		oid = response.Variables[len(response.Variables)-1].Name
-
 	}
 	x.Logger.Printf("BulkWalk completed in %d requests", requests)
 	return nil

@@ -186,7 +186,6 @@ func (x *GoSNMP) sendOneRequest(packetOut *SnmpPacket,
 			if err != nil {
 				break
 			}
-
 		}
 		if x.loggingEnabled && x.Version == Version3 {
 			packetOut.SecurityParameters.Log()
@@ -484,7 +483,6 @@ func (packet *SnmpPacket) marshalPDU() ([]byte, error) {
 	buf := new(bytes.Buffer)
 
 	switch packet.PDUType {
-
 	case GetBulkRequest:
 		// requestid
 		buf.Write([]byte{2, 4})
@@ -522,7 +520,6 @@ func (packet *SnmpPacket) marshalPDU() ([]byte, error) {
 
 		// error index
 		buf.Write([]byte{2, 1, packet.ErrorIndex})
-
 	}
 
 	// varbind list
@@ -551,7 +548,6 @@ func (packet *SnmpPacket) marshalPDU() ([]byte, error) {
 
 // marshal a varbind list
 func (packet *SnmpPacket) marshalVBL() ([]byte, error) {
-
 	vblBuf := new(bytes.Buffer)
 	for _, pdu := range packet.Variables {
 		pdu := pdu
@@ -586,7 +582,6 @@ func marshalVarbind(pdu *SnmpPDU) ([]byte, error) {
 
 	// Marshal the PDU type into the appropriate BER
 	switch pdu.Type {
-
 	case Null:
 		ltmp, err2 := marshalLength(len(oid))
 		if err2 != nil {
@@ -1056,7 +1051,6 @@ func (x *GoSNMP) unmarshalTrapV1(packet []byte, response *SnmpPacket) error {
 
 // unmarshal a Varbind list
 func (x *GoSNMP) unmarshalVBL(packet []byte, response *SnmpPacket) error {
-
 	var cursor, cursorInc int
 	var vblLength int
 

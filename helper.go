@@ -82,9 +82,7 @@ func (x *GoSNMP) decodeValue(data []byte, msg string) (*variable, error) {
 		}
 		data = data[1:]
 	}
-
 	switch Asn1BER(data[0]) {
-
 	case Integer:
 		// 0x02. signed
 		x.logPrint("decodeValue: type is Integer")
@@ -387,7 +385,6 @@ func marshalUint32(v interface{}) ([]byte, error) {
 		return bs[1:], nil
 	}
 	return bs, nil
-
 }
 
 func marshalFloat32(v interface{}) ([]byte, error) {

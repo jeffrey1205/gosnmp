@@ -255,7 +255,6 @@ func (sp *UsmSecurityParameters) setSecurityParameters(in SnmpV3SecurityParamete
 }
 
 func (sp *UsmSecurityParameters) validate(flags SnmpV3MsgFlags) error {
-
 	securityLevel := flags & AuthPriv // isolate flags that determine security level
 
 	switch securityLevel {
@@ -372,7 +371,6 @@ func cachedPasswordToKey(hash hash.Hash, cacheKey string, password string) ([]by
 }
 
 func hMAC(hash crypto.Hash, cacheKey string, password string, engineID string) ([]byte, error) {
-
 	hashed, err := cachedPasswordToKey(hash.New(), cacheKey, password)
 	if err != nil {
 		return []byte{}, nil
@@ -411,7 +409,6 @@ func cacheKey(authProtocol SnmpV3AuthProtocol, passphrase string) string {
 // Previously implemented in net-snmp and pysnmp libraries.
 // Tested for AES128 and AES256
 func extendKeyReeder(authProtocol SnmpV3AuthProtocol, password string, engineID string) ([]byte, error) {
-
 	var key []byte
 	var err error
 
@@ -432,7 +429,6 @@ func extendKeyReeder(authProtocol SnmpV3AuthProtocol, password string, engineID 
 // Previously implemented in the net-snmp and pysnmp libraries.
 // Not tested
 func extendKeyBlumenthal(authProtocol SnmpV3AuthProtocol, password string, engineID string) ([]byte, error) {
-
 	var key []byte
 	var err error
 
@@ -463,7 +459,6 @@ func genlocalPrivKey(privProtocol SnmpV3PrivProtocol, authProtocol SnmpV3AuthPro
 	}
 
 	switch privProtocol {
-
 	case AES, AES192C, AES256C:
 		localPrivKey, err = extendKeyReeder(authProtocol, password, engineID)
 
@@ -514,7 +509,6 @@ func (sp *UsmSecurityParameters) usmAllocateNewSalt() interface{} {
 }
 
 func (sp *UsmSecurityParameters) usmSetSalt(newSalt interface{}) error {
-
 	switch sp.PrivacyProtocol {
 	case AES, AES192, AES256, AES192C, AES256C:
 		aesSalt, ok := newSalt.(uint64)
@@ -552,7 +546,6 @@ func (sp *UsmSecurityParameters) initPacket(packet *SnmpPacket) error {
 }
 
 func (sp *UsmSecurityParameters) discoveryRequired() *SnmpPacket {
-
 	if sp.AuthoritativeEngineID == "" {
 		var emptyPdus []SnmpPDU
 
@@ -596,7 +589,6 @@ func (sp *UsmSecurityParameters) calcPacketDigest(packet []byte) []byte {
 }
 
 func (sp *UsmSecurityParameters) authenticate(packet []byte) error {
-
 	msgDigest := sp.calcPacketDigest(packet)
 	idx := bytes.Index(packet, macVarbinds[sp.AuthenticationProtocol])
 
@@ -610,7 +602,6 @@ func (sp *UsmSecurityParameters) authenticate(packet []byte) error {
 
 // determine whether a message is authentic
 func (sp *UsmSecurityParameters) isAuthentic(packetBytes []byte, packet *SnmpPacket) (bool, error) {
-
 	var packetSecParams *UsmSecurityParameters
 	var err error
 
@@ -782,7 +773,6 @@ func (sp *UsmSecurityParameters) marshal(flags SnmpV3MsgFlags) ([]byte, error) {
 }
 
 func (sp *UsmSecurityParameters) unmarshal(flags SnmpV3MsgFlags, packet []byte, cursor int) (int, error) {
-
 	var err error
 
 	if PDUType(packet[cursor]) != Sequence {
@@ -827,7 +817,6 @@ func (sp *UsmSecurityParameters) unmarshal(flags SnmpV3MsgFlags, packet []byte, 
 					if err != nil {
 						return 0, err
 					}
-
 				}
 			}
 		}

@@ -232,7 +232,6 @@ func (t *TrapListener) listenTCP(addr string) error {
 	t.listening <- true
 
 	for {
-
 		switch {
 		case atomic.LoadInt32(&t.finish) == 1:
 			t.done <- true

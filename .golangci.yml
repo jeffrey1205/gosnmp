@@ -11,20 +11,16 @@ linters:
   - dupl
   - errcheck
   - gochecknoglobals
-    # - gocognit
   - goconst
   - gocritic
-    # - gocyclo
   - goimports
   - golint
-    # - gomnd
-    # - goerr113
   - goprintffuncname
+  - gosec
   - gosimple
   - govet
   - ineffassign
   - interfacer
-    # - maligned
   - misspell
   - nakedret
   - staticcheck
@@ -35,6 +31,17 @@ linters:
   - unparam
   - unused
   - varcheck
+  - nolintlint
+  - scopelint
+  - whitespace
+    # - prealloc
+    # - gocognit
+    # - gocyclo
+    # - goerr113
+    # - gomnd
+    # - maligned
+    # - lll
+    # - nestif
 
 linters-settings:
   gofmt:

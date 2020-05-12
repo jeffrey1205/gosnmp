@@ -106,7 +106,6 @@ func (x *GoSNMP) testAuthentication(packet []byte, result *SnmpPacket) error {
 }
 
 func (x *GoSNMP) initPacket(packetOut *SnmpPacket) error {
-
 	if x.MsgFlags&AuthPriv > AuthNoPriv {
 		return x.SecurityParameters.initPacket(packetOut)
 	}
@@ -157,7 +156,6 @@ func (x *GoSNMP) negotiateInitialSecurityParameters(packetOut *SnmpPacket) error
 
 // save the connection security parameters after a request/response
 func (x *GoSNMP) storeSecurityParameters(result *SnmpPacket) error {
-
 	if x.Version != Version3 || result.Version != Version3 {
 		return fmt.Errorf("storeParameters called with non Version3 connection or packet")
 	}
@@ -196,7 +194,6 @@ func (x *GoSNMP) updatePktSecurityParameters(packetOut *SnmpPacket) error {
 }
 
 func (packet *SnmpPacket) marshalV3(buf *bytes.Buffer) (*bytes.Buffer, error) { //nolint:interfacer
-
 	emptyBuffer := new(bytes.Buffer) // used when returning errors
 
 	header, err := packet.marshalV3Header()
@@ -324,7 +321,6 @@ func (packet *SnmpPacket) prepareV3ScopedPDU() ([]byte, error) {
 func (x *GoSNMP) unmarshalV3Header(packet []byte,
 	cursor int,
 	response *SnmpPacket) (int, error) {
-
 	if PDUType(packet[cursor]) != Sequence {
 		return 0, fmt.Errorf("invalid SNMPV3 Header")
 	}
