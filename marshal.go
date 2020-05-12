@@ -521,7 +521,7 @@ func (packet *SnmpPacket) marshalPDU() ([]byte, error) {
 		buf.Write([]byte{2, 1, byte(packet.Error)})
 
 		// error index
-		buf.Write([]byte{2, 1, byte(packet.ErrorIndex)})
+		buf.Write([]byte{2, 1, packet.ErrorIndex})
 
 	}
 

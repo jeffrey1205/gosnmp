@@ -45,7 +45,7 @@ RequestLoop:
 
 		switch getRequestType {
 		case GetBulkRequest:
-			response, err = x.GetBulk([]string{oid}, uint8(x.NonRepeaters), uint8(maxReps))
+			response, err = x.GetBulk([]string{oid}, uint8(x.NonRepeaters), maxReps)
 		case GetNextRequest:
 			response, err = x.GetNext([]string{oid})
 		case GetRequest:

@@ -251,7 +251,7 @@ func (x *GoSNMP) connect(networkSuffix string) error {
 		return err
 	}
 
-	x.Transport = x.Transport + networkSuffix
+	x.Transport += networkSuffix
 	err = x.netConnect()
 	if err != nil {
 		return fmt.Errorf("error establishing connection to host: %s", err.Error())
