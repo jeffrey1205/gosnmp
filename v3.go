@@ -195,7 +195,7 @@ func (x *GoSNMP) updatePktSecurityParameters(packetOut *SnmpPacket) error {
 	return nil
 }
 
-func (packet *SnmpPacket) marshalV3(buf *bytes.Buffer) (*bytes.Buffer, error) {
+func (packet *SnmpPacket) marshalV3(buf *bytes.Buffer) (*bytes.Buffer, error) { //nolint:interfacer
 
 	emptyBuffer := new(bytes.Buffer) // used when returning errors
 
