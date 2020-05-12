@@ -33,6 +33,9 @@ const (
 
 	// Java SNMP uses 50, snmp-net uses 10
 	defaultMaxRepetitions = 50
+
+	// "udp" is used regularly, prevent 'goconst' complaints
+	udp = "udp"
 )
 
 // GoSNMP represents GoSNMP library state
@@ -126,7 +129,7 @@ type GoSNMP struct {
 //nolint:gochecknoglobals
 var Default = &GoSNMP{
 	Port:               161,
-	Transport:          "udp",
+	Transport:          udp,
 	Community:          "public",
 	Version:            Version2c,
 	Timeout:            time.Duration(2) * time.Second,
@@ -293,7 +296,7 @@ func (x *GoSNMP) validateParameters() error {
 	}
 
 	if x.Transport == "" {
-		x.Transport = "udp"
+		x.Transport = udp
 	}
 
 	if x.MaxOids == 0 {

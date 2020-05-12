@@ -140,7 +140,7 @@ func (t *TrapListener) Close() {
 		if t.conn == nil {
 			return
 		}
-		if t.conn.LocalAddr().Network() == "udp" {
+		if t.conn.LocalAddr().Network() == udp {
 			t.conn.Close()
 		}
 		<-t.done
@@ -154,7 +154,7 @@ func (t *TrapListener) listenUDP(addr string) error {
 	if err != nil {
 		return err
 	}
-	t.conn, err = net.ListenUDP("udp", udpAddr)
+	t.conn, err = net.ListenUDP(udp, udpAddr)
 	if err != nil {
 		return err
 	}
@@ -216,8 +216,6 @@ func (t *TrapListener) handleTCPRequest(conn net.Conn) {
 }
 
 func (t *TrapListener) listenTCP(addr string) error {
-	// udp
-
 	tcpAddr, err := net.ResolveTCPAddr(t.proto, addr)
 	if err != nil {
 		return err
@@ -274,7 +272,7 @@ func (t *TrapListener) Listen(addr string) error {
 	}
 
 	splitted := strings.SplitN(addr, "://", 2)
-	t.proto = "udp"
+	t.proto = udp
 	if len(splitted) > 1 {
 		t.proto = splitted[0]
 		addr = splitted[1]
@@ -284,7 +282,7 @@ func (t *TrapListener) Listen(addr string) error {
 
 	if t.proto == "tcp" {
 		return t.listenTCP(addr)
-	} else if t.proto == "udp" {
+	} else if t.proto == udp {
 		return t.listenUDP(addr)
 	}
 
