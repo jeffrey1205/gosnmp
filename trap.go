@@ -207,7 +207,7 @@ func (t *TrapListener) handleTCPRequest(conn net.Conn) {
 	traps := t.Params.UnmarshalTrap(msg)
 
 	if traps != nil {
-		// TODO: lieing for backward compatibility reason - create UDP Address ... not nice
+		// TODO: lying for backward compatibility reason - create UDP Address ... not nice
 		r, _ := net.ResolveUDPAddr("", conn.RemoteAddr().String())
 		t.OnNewTrap(traps, r)
 	}
@@ -277,8 +277,6 @@ func (t *TrapListener) Listen(addr string) error {
 		t.proto = splitted[0]
 		addr = splitted[1]
 	}
-
-	//fmt.Printf("TEST: Adress:%s, %s", t.proto, addr)
 
 	if t.proto == "tcp" {
 		return t.listenTCP(addr)

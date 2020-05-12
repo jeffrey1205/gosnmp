@@ -362,7 +362,7 @@ func (x *GoSNMP) send(packetOut *SnmpPacket, wait bool) (result *SnmpPacket, err
 
 	// detect unknown engine id error and retransmit with updated engine id
 	if len(result.Variables) == 1 && result.Variables[0].Name == ".1.3.6.1.6.3.15.1.1.4.0" {
-		x.logPrint("WARNING detected unknown enginer id ERROR")
+		x.logPrint("WARNING detected unknown enginer id ERROR") //nolint:misspell enginer is correct
 		err = x.updatePktSecurityParameters(packetOut)
 		if err != nil {
 			x.logPrintf("ERROR  updatePktSecurityParameters error: %s", err)
@@ -454,7 +454,7 @@ func (packet *SnmpPacket) marshalSNMPV1TrapHeader() ([]byte, error) {
 	var genericTrapBytes []byte
 	genericTrapBytes, err = marshalInt32(packet.GenericTrap)
 	if err != nil {
-		return nil, fmt.Errorf("Unable to marshal SNMPv1 GenericTrap: %s", err.Error())
+		return nil, fmt.Errorf("unable to marshal SNMPv1 GenericTrap: %s", err.Error())
 	}
 	buf.Write([]byte{byte(Integer), byte(len(genericTrapBytes))})
 	buf.Write(genericTrapBytes)
@@ -463,7 +463,7 @@ func (packet *SnmpPacket) marshalSNMPV1TrapHeader() ([]byte, error) {
 	var specificTrapBytes []byte
 	specificTrapBytes, err = marshalInt32(packet.SpecificTrap)
 	if err != nil {
-		return nil, fmt.Errorf("Unable to marshal SNMPv1 SpecificTrap: %s", err.Error())
+		return nil, fmt.Errorf("unable to marshal SNMPv1 SpecificTrap: %s", err.Error())
 	}
 	buf.Write([]byte{byte(Integer), byte(len(specificTrapBytes))})
 	buf.Write(specificTrapBytes)

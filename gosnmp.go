@@ -302,7 +302,7 @@ func (x *GoSNMP) validateParameters() error {
 	if x.MaxOids == 0 {
 		x.MaxOids = MaxOids
 	} else if x.MaxOids < 0 {
-		return fmt.Errorf("MaxOids cannot be less than 0")
+		return fmt.Errorf("field MaxOids cannot be less than 0")
 	}
 
 	if x.Version == Version3 {
@@ -473,7 +473,7 @@ func (x *GoSNMP) SnmpDecodePacket(resp []byte) (*SnmpPacket, error) {
 	var cursor int
 	cursor, err = x.unmarshalHeader(resp, result)
 	if err != nil {
-		err = fmt.Errorf("Unable to decode packet header: %s", err.Error())
+		err = fmt.Errorf("unable to decode packet header: %s", err.Error())
 		return result, err
 	}
 
@@ -486,7 +486,7 @@ func (x *GoSNMP) SnmpDecodePacket(resp []byte) (*SnmpPacket, error) {
 
 	err = x.unmarshalPayload(resp, cursor, result)
 	if err != nil {
-		err = fmt.Errorf("Unable to decode packet body: %s", err.Error())
+		err = fmt.Errorf("unable to decode packet body: %s", err.Error())
 		return result, err
 	}
 
@@ -598,7 +598,7 @@ func ToBigInt(value interface{}) *big.Int {
 	case int32:
 		val = int64(value)
 	case int64:
-		val = int64(value)
+		val = value
 	case uint:
 		val = int64(value)
 	case uint8:

@@ -120,7 +120,7 @@ func (x *GoSNMP) decodeValue(data []byte, msg string) (retVal *variable, err err
 		x.logPrint("decodeValue: type is ObjectIdentifier")
 		rawOid, _, err2 := parseRawField(x.Logger, data, "OID")
 		if err2 != nil {
-			return nil, fmt.Errorf("Error parsing OID Value: %s", err2.Error())
+			return nil, fmt.Errorf("error parsing OID Value: %s", err2.Error())
 		}
 		var oid []int
 		var ok bool
@@ -502,7 +502,7 @@ func parseBase128Int(bytes []byte, initOffset int) (ret, offset int, err error) 
 	offset = initOffset
 	for shifted := 0; offset < len(bytes); shifted++ {
 		if shifted > 4 {
-			err = fmt.Errorf("Structural Error: base 128 integer too large")
+			err = fmt.Errorf("structural error: base 128 integer too large")
 			return
 		}
 		ret <<= 7
@@ -513,7 +513,7 @@ func parseBase128Int(bytes []byte, initOffset int) (ret, offset int, err error) 
 			return
 		}
 	}
-	err = fmt.Errorf("Syntax Error: truncated base 128 integer")
+	err = fmt.Errorf("syntax error: truncated base 128 integer")
 	return
 }
 
@@ -622,7 +622,7 @@ func parseRawField(logger Logger, data []byte, msg string) (interface{}, int, er
 		}
 		i, err := parseInt(data[cursor:length])
 		if err != nil {
-			return nil, 0, fmt.Errorf("Unable to parse raw INTEGER: %x err: %v", data, err)
+			return nil, 0, fmt.Errorf("unable to parse raw INTEGER: %x err: %v", data, err)
 		}
 		return i, length, nil
 	case OctetString:
@@ -662,7 +662,7 @@ func parseRawField(logger Logger, data []byte, msg string) (interface{}, int, er
 		}
 		ret, err := parseUint(data[cursor:length])
 		if err != nil {
-			return nil, 0, fmt.Errorf("Error in parseUint: %s", err)
+			return nil, 0, fmt.Errorf("error in parseUint: %s", err)
 		}
 		return ret, length, nil
 	}
