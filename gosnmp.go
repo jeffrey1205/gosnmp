@@ -455,7 +455,7 @@ func (x *GoSNMP) SnmpEncodePacket(pdutype PDUType, pdus []SnmpPDU, nonRepeaters 
 func (x *GoSNMP) SnmpDecodePacket(resp []byte) (*SnmpPacket, error) {
 	var err error
 
-	result := new(SnmpPacket)
+	result := &SnmpPacket{}
 
 	err = x.validateParameters()
 	if err != nil {
@@ -487,10 +487,10 @@ func (x *GoSNMP) SnmpDecodePacket(resp []byte) (*SnmpPacket, error) {
 		return result, err
 	}
 
-	if result == nil {
-		err = fmt.Errorf("Unable to decode packet: no variables")
-		return result, err
-	}
+	// if result == nil {
+	// 	err = fmt.Errorf("Unable to decode packet: no variables")
+	// 	return result, err
+	// }
 	return result, nil
 }
 

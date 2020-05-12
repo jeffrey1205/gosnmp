@@ -41,17 +41,17 @@ func (x *GoSNMP) Check(err error) {
 }
 
 // Check makes checking errors easy, so they actually get a minimal check
-func (p *SnmpPacket) Check(err error) {
+func (packet *SnmpPacket) Check(err error) {
 	if err != nil {
-		p.Logger.Printf("Check: %v\n", err)
+		packet.Logger.Printf("Check: %v\n", err)
 		os.Exit(1)
 	}
 }
 
 // Check makes checking errors easy, so they actually get a minimal check
-func (p *SnmpPDU) Check(err error) {
+func (pdu *SnmpPDU) Check(err error) {
 	if err != nil {
-		p.Logger.Printf("Check: %v\n", err)
+		pdu.Logger.Printf("Check: %v\n", err)
 		os.Exit(1)
 	}
 }
@@ -179,9 +179,9 @@ func (x *GoSNMP) decodeValue(data []byte, msg string) (retVal *variable, err err
 			return retVal, fmt.Errorf("not enough data for Gauge32 %x (data %d length %d)", data, len(data), length)
 		}
 
-		ret, err := parseUint(data[cursor:length])
-		if err != nil {
-			x.logPrintf("decodeValue: err is %v", err)
+		ret, err2 := parseUint(data[cursor:length])
+		if err2 != nil {
+			x.logPrintf("decodeValue: err is %v", err2)
 			break
 		}
 		retVal.Type = Gauge32
@@ -194,9 +194,9 @@ func (x *GoSNMP) decodeValue(data []byte, msg string) (retVal *variable, err err
 			return retVal, fmt.Errorf("not enough data for TimeTicks %x (data %d length %d)", data, len(data), length)
 		}
 
-		ret, err := parseUint32(data[cursor:length])
-		if err != nil {
-			x.logPrintf("decodeValue: err is %v", err)
+		ret, err2 := parseUint32(data[cursor:length])
+		if err2 != nil {
+			x.logPrintf("decodeValue: err is %v", err2)
 			break
 		}
 		retVal.Type = TimeTicks
@@ -220,9 +220,9 @@ func (x *GoSNMP) decodeValue(data []byte, msg string) (retVal *variable, err err
 			return retVal, fmt.Errorf("not enough data for Counter64 %x (data %d length %d)", data, len(data), length)
 		}
 
-		ret, err := parseUint64(data[cursor:length])
-		if err != nil {
-			x.logPrintf("decodeValue: err is %v", err)
+		ret, err2 := parseUint64(data[cursor:length])
+		if err2 != nil {
+			x.logPrintf("decodeValue: err is %v", err2)
 			break
 		}
 		retVal.Type = Counter64
