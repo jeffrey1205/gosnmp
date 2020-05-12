@@ -651,7 +651,7 @@ func (sp *UsmSecurityParameters) encryptPacket(scopedPdu []byte) ([]byte, error)
 			return nil, err
 		}
 		b = append([]byte{byte(OctetString)}, pduLen...)
-		scopedPdu = append(b, ciphertext...)
+		scopedPdu = append(b, ciphertext...) //nolint:gocritic
 	default:
 		preiv := sp.PrivacyKey[8:]
 		var iv [8]byte
@@ -674,7 +674,7 @@ func (sp *UsmSecurityParameters) encryptPacket(scopedPdu []byte) ([]byte, error)
 			return nil, err
 		}
 		b = append([]byte{byte(OctetString)}, pduLen...)
-		scopedPdu = append(b, ciphertext...)
+		scopedPdu = append(b, ciphertext...) //nolint:gocritic
 	}
 
 	return scopedPdu, nil
