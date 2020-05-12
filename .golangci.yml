@@ -34,14 +34,6 @@ linters:
   - nolintlint
   - scopelint
   - whitespace
-    # - prealloc
-    # - gocognit
-    # - gocyclo
-    # - goerr113
-    # - gomnd
-    # - maligned
-    # - lll
-    # - nestif
 
 linters-settings:
   gofmt:
@@ -53,3 +45,13 @@ linters-settings:
   govet:
     check-shadowing: true
     enable-all: true
+
+    # TODO the following linters
+    # - prealloc
+    # - gocognit
+    # - gocyclo
+    # - goerr113
+    # - gomnd
+    # - maligned
+    # - lll
+    # - nestif
