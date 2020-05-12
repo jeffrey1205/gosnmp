@@ -47,11 +47,11 @@ linters-settings:
     enable-all: true
 
     # TODO the following linters
-    # - prealloc
     # - gocognit
     # - gocyclo
     # - goerr113
     # - gomnd
-    # - maligned
     # - lll
+    # - maligned
     # - nestif
+    # - prealloc
