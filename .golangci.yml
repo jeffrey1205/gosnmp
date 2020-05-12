@@ -8,11 +8,17 @@ linters:
   - bodyclose
   - deadcode
   - dogsled
+  - dupl
   - errcheck
+  - gochecknoglobals
+    # - gocognit
   - goconst
   - gocritic
+    # - gocyclo
   - goimports
   - golint
+    # - gomnd
+    # - goerr113
   - goprintffuncname
   - gosimple
   - govet
