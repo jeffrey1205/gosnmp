@@ -1,4 +1,4 @@
-module github.com/soniah/gosnmp
+module github.com/jeffrey1205/gosnmp
 
 
 require (
