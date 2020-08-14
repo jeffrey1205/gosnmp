@@ -1,5 +1,28 @@
+**11 July 2020** - I'm planning on archiving **gosnmp**, as maintaining it is
+having too much of an effect on my work and personal life. I started the fork
+in March 2013 and I've been working on it ever since.
+
+At the moment I'm keeping it open so it can act as a central clearing house for
+issues and discussions around who is going to fork and maintain gosnmp - maybe one
+person, maybe a team. Here are some suggestions around short term goals:
+
+- more tests, both unit and integration
+- Docker infrastructure, so developers can locally troubleshoot their changes
+  before submitting (broken) PRs
+- fix snmpv3, INFORM responses, traps
+
+Thanks to Tim Rots for reaching out to me, to the many people who have submitted
+PRs, and of course Andreas Louca, who started the project in 2012.
+
+Tim has raised issue [Searching for collaboration to fork gosnmp](https://github.com/soniah/gosnmp/issues/247)
+to help coordinate replacement maintainers.
+
+Sonia Hamilton, sonia@snowfrog.net, Australia.
+
 gosnmp
 ======
+[![Mentioned in Awesome Go](https://awesome.re/mentioned-badge-flat.svg)](https://github.com/avelino/awesome-go#networking)
+
 [![Build Status](https://travis-ci.org/soniah/gosnmp.svg?branch=master)](https://travis-ci.org/soniah/gosnmp)
 [![GoDoc](https://godoc.org/github.com/soniah/gosnmp?status.png)](http://godoc.org/github.com/soniah/gosnmp)
 https://github.com/soniah/gosnmp
@@ -205,6 +228,14 @@ The following BER types have been implemented:
 Running the Tests
 -----------------
 
+Local testing in Docker
+```shell
+docker build -t soniah/gosnmp:latest .
+docker run -it soniah/gosnmp:latest
+```
+
+or
+
 ```shell
 export GOSNMP_TARGET=1.2.3.4
 export GOSNMP_PORT=161
@@ -258,6 +289,7 @@ go get github.com/axw/gocov/gocov
 go get github.com/matm/gocov-html
 gocov test github.com/soniah/gosnmp | gocov-html > gosnmp.html && firefox gosnmp.html &
 ```
+
 
 License
 -------
